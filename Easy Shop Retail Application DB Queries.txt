@@ -1,0 +1,163 @@
+CREATE TABLE supplier(
+supplierid VARCHAR2(6) PRIMARY KEY,
+suppliername VARCHAR2(30),
+suppliercontactno varchar2(15),
+supplieremailid VARCHAR2(30)
+);
+
+INSERT INTO supplier VALUES ('S1001','Giant Store',
+'203-237-2079', 'rachel1@easy.com');
+
+INSERT INTO supplier VALUES ('S1002','EBATs','115-340-2345','ebats@easy.com');
+
+INSERT INTO supplier VALUES ('S1003','Shop Zilla',
+'203-123-3456', 'shopzilla@easy.com');
+
+INSERT INTO supplier VALUES ('S1004','VV Electronics',
+'115-340-6756', 'vvelectronics@easy.com');
+
+INSERT INTO supplier 
+VALUES ('S1005','Victor Electronics','115-265-4675', 'victorelectronics@easy.com');
+
+CREATE TABLE item(
+itemcode VARCHAR2(6) PRIMARY KEY,
+itemtype VARCHAR2(30), 
+description VARCHAR2(100)  NOT NULL,
+price NUMBER(7,2),
+reorderlevel NUMBER,
+quantityonhand NUMBER,
+category CHAR(1)
+);
+
+INSERT INTO item VALUES('I1001', 'FMCG', 'Britannia Marie Gold Cookies',20,100,1000,'C');
+
+INSERT INTO item VALUES('I1002', 'FMCG', 'Brooke Bond Tea', 60, 100,1000,'C');
+
+INSERT INTO item VALUES('I1003', 'FMCG', 'Best Rice', 120,100,1000,'C');
+
+INSERT INTO item VALUES('I1004', 'FMCG', 'Modern Bread', 15, 100,1000,'C');
+
+INSERT INTO item VALUES('I1005','FMCG', 'Bourbon Cookies', 30,100,1000, 'C');
+
+INSERT INTO item VALUES('I1006','Apparels', 'Lee T-Shirt', 1300,100,1000,'B');
+
+INSERT INTO item VALUES('I1007','Apparels', 'Levis T-Shirt', 1700,100,1000, 'B');
+
+INSERT INTO item VALUES('I1008','Apparels', 'Satyapaul Sari', 7300,100,1000, 'A');
+
+INSERT INTO item VALUES('I1009','Apparels', 'W Skirt', 1100, 100,1000,'B');
+
+INSERT INTO item VALUES('I1010','Apparels', 'Allen Solly Tie', 600,100,1000, 'C');
+
+INSERT INTO item VALUES('I1011','Apparels', 'Wrangler Shirt', 2300,100,1000, 'B');
+
+INSERT INTO item VALUES('I1012','Computer', 'Xbox gamepad',1500,100,50,'B');
+
+INSERT INTO item VALUES('I1013','Computer','Microsoft Mouse',700,120,50,'C');	
+
+INSERT INTO item VALUES('I1014','Computer','Intel C2D Processor',6500,50,25,'A');	
+
+INSERT INTO item VALUES('I1015','Computer','Intel Motherboard',5000,50,25,'A');
+
+INSERT INTO item VALUES('I1016','Computer','1 GB DDR2 RAM',1000,250,50,'B');	
+
+INSERT INTO item VALUES('I1017','Computer','Microsoft Keyboard',1000,140,50,'B');	
+
+INSERT INTO item VALUES('I1018','Computer','500GB Hard disk',2500,150,50,'B');
+
+INSERT INTO item VALUES('I1019','Computer','320GB Hard disk',1800,150,50,'B');
+
+INSERT INTO item VALUES('I1020', 'FMCG', 'Britannia Choco Chip Cookies',25,200,100,'C');
+
+INSERT INTO item VALUES('I1021', 'FMCG', 'Amfeast Choco Chip Cookies',23,200,150,'C');
+
+INSERT INTO item VALUES('I1022', 'FMCG', 'Amfeast Marie Gold Cookies',21,200,180,'C');
+
+INSERT INTO item VALUES('I1023', 'FMCG', 'Aroma Bread', 17, 100,50,'C');
+
+INSERT INTO item VALUES('I1024','Apparels', 'Arrow Jeans', 7300, 50,60,'A');
+
+CREATE TABLE quotation(
+quotationid VARCHAR2(6)  PRIMARY KEY,
+supplierid VARCHAR2(6)  REFERENCES supplier(supplierid),
+itemcode VARCHAR2(10)  REFERENCES item(itemcode),
+quotedprice NUMBER,
+quotationdate DATE,
+quotationstatus VARCHAR2(10) 
+CHECK(quotationstatus IN ('Accepted','Rejected','Closed')));
+
+INSERT INTO quotation VALUES('Q1001','S1001','I1012',1500,to_date('15-Oct-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1002','S1002','I1012',1400,to_date('16-Oct-2010','DD-MON-YYYY'),'Closed');
+
+INSERT INTO quotation VALUES('Q1003','S1003','I1012',1450,to_date('16-Oct-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1004','S1001','I1013',600,to_date('16-Oct-2010','DD-MON-YYYY'),'Accepted');
+
+INSERT INTO quotation VALUES('Q1005','S1004','I1013',625,to_date('18-Oct-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1006','S1002','I1014',6200,to_date('18-Oct-2010','DD-MON-YYYY'),'Accepted');
+
+INSERT INTO quotation VALUES('Q1007','S1003','I1014',6250,to_date('20-Oct-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1008','S1003','I1015',4600,to_date('15-Nov-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1009','S1004','I1015',4500,to_date('16-Nov-2010','DD-MON-YYYY'),'Closed');
+
+INSERT INTO quotation VALUES('Q1010','S1001','I1016',850,to_date('25-Nov-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1011','S1004','I1016',800,to_date('25-Nov-2010','DD-MON-YYYY'),'Closed');
+
+INSERT INTO quotation VALUES('Q1012','S1002','I1017',800,to_date('30-Dec-2010','DD-MON-YYYY'),'Closed');
+
+INSERT INTO quotation VALUES('Q1013','S1003','I1017',875,to_date('30-Dec-2010','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1014','S1003','I1018',2200,to_date('15-Jan-2011','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1015','S1002','I1018',2150,to_date('15-Jan-2011','DD-MON-YYYY'),'Accepted');
+
+INSERT INTO quotation VALUES('Q1016','S1003','I1012',1480,to_date('15-Jun-2011','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1017','S1001','I1012',1490,to_date('15-Jun-2011','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1018','S1002','I1003',120,to_date('16-Jun-2011','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1019','S1004','I1003',120,to_date('16-Jun-2011','DD-MON-YYYY'),'Rejected');
+
+INSERT INTO quotation VALUES('Q1020','S1002','I1018',2150,to_date('16-Jun-2011','DD-MON-YYYY'),'Accepted');
+
+CREATE or REPLACE PROCEDURE sp_Add_Supplier(p_SupplierID IN supplier.supplierID%Type,p_SupplierName IN supplier.supplierName%Type, p_SupplierContact IN supplier.suppliercontactno%TYPE,p_SupplierEmail IN supplier.supplieremailid%TYPE)
+AS	
+BEGIN
+insert into supplier values(p_supplierID, p_SupplierName, p_SupplierContact, p_SupplierEmail);
+Commit; 
+END;
+
+CREATE or REPLACE PROCEDURE sp_Check_SupplierID(p_supID IN supplier.supplierID%Type, p_out OUT NUMBER)
+AS
+v_count number(3);
+BEGIN
+select count(*) into v_count from supplier where supplierID =p_supID;
+if(v_count=0) then
+	p_Out:= 0;
+	return;
+end if;
+p_out:= 1;
+return;
+END;
+
+CREATE or REPLACE FUNCTION sf_NoOfSupplier
+return number
+AS
+v_count number(3);
+BEGIN
+select count(*) into v_count from supplier;
+return v_count;	
+END;
+
+
+
+
+
+
+

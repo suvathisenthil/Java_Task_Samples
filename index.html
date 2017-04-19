@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Own Design</title>
+<link rel="stylesheet" href="theme.css" type="text/css" />
+</head>
+<body>
+<a href="theme.css">Get Theme</a>
+<table border="1" width="1024px" class="centered data">
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>&nbsp;</th>
+<th>&nbsp;</th>
+</tr>
+<tr>
+<td>APP001</td>
+<td>Steve Jobs</td>
+<td class="dml">
+<form action="edit.jsp">
+<input type="hidden" name = "user" value="APP001" />
+<input type="submit" value="edit" />
+</form>
+</td>
+<td class="dml">
+<form action="delete.jsp">
+<input type="hidden" name = "user" value="APP001" />
+<input type="submit" value="delete" />
+</form>
+</td>
+</tr>
+<tr>
+<td>APP002</td>
+<td>Guido Van Rossum</td>
+<td class="dml">
+<form action="edit.jsp">
+<input type="hidden" name = "user" value="APP002" />
+<input type="submit" value="edit" />
+</form>
+</td>
+<td class="dml">
+<form action="delete.jsp">
+<input type="hidden" name = "user" value="APP002" />
+<input type="submit" value="delete" />
+</form>
+</td>
+</tr>
+</table>
+<form action = "save.jsp" method = "get">
+<table width="768px" class="centered">
+<tr>
+<td><label for="user">Name</label></td>
+<td><input type="text" name="user" id="user" placeholder = "Username Here" /> 
+</tr>
+
+<tr>
+<td><label for="key">Password</label></td>
+<td><input type="password" name="key" id="key" placeholder = "Password Here" /> 
+</tr>
+
+<tr>
+<td>Gender</td>
+<td>
+<input type="radio" name="gender" id="male" value="male" /><label for="male">Male</label>
+<input type="radio" name="gender" id="female" value="female" /><label for="female">Female</label>
+</td>
+</tr>
+<tr>
+<td>Skills</td>
+<td>
+<input type="checkbox" name="skill" id="c" value="c" /><label for="c">C</label>
+<input type="checkbox" name="skill" id="cpp" value="c++" /><label for="cpp">C++</label>
+<input type="checkbox" name="skill" id="java" value="java" /><label for="java">Java</label>
+<input type="checkbox" name="skill" id="js" value="js" /><label for="js">JavaScript</label>
+<input type="checkbox" name="skill" id="python" value="python" /><label for="python">Python</label>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+<input type="submit" class="btn-large" value="Save" />
+</td>
+</tr>
+</table>
+</form>
+</body>
+</html>
